@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_navigation.xml" app:startDestination="@id/genreListFragment">
+
+    <fragment android:id="@+id/genreListFragment" android:name="com.android.moviestest.ui.genres.GenreListFragment"
+              android:label="GenreListFragment" tools:layout="@layout/item_genre_list">
+        <action android:id="@+id/action_genreListFragment_to_movieListFragment" app:destination="@id/movieListFragment"
+                app:popUpTo="@id/genreListFragment" app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment android:id="@+id/movieListFragment" android:name="com.android.moviestest.ui.movies.MovieListFragment"
+              android:label="MovieListFragment" tools:layout="@layout/item_genre_list">
+        <action android:id="@+id/action_movieListFragment_to_movieDetailFragment"
+                app:destination="@id/movieDetailFragment" app:popUpTo="@id/movieListFragment"
+                app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment android:id="@+id/movieDetailFragment"
+              android:name="com.android.moviestest.ui.detailmovie.MovieDetailFragment"
+              android:label="MovieDetailFragment" tools:layout="@layout/fragment_movie_detail"/>
+</navigation>

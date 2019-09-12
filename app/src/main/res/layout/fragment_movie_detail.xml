@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipeRefreshLayout">
+
+    <ViewAnimator
+            android:id="@+id/viewAnimator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <include layout="@layout/layout_loading"/>
+
+        <include layout="@layout/layout_error"/>
+
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout android:orientation="vertical"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:focusable="true">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3">
+
+                        <ImageView
+                                android:id="@+id/ivImage"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintDimensionRatio="6:9"
+                                android:scaleType="centerCrop"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="8dp"
+                            android:paddingRight="12dp"
+                            android:paddingLeft="12dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tvName"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                tools:text="Action"/>
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12sp"
+                                        android:textStyle="bold"
+                                        android:ellipsize="end"
+                                        android:text="Release Date :\u0020"/>
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/tvRelease"
+                                        android:textSize="12sp"
+                                        android:ellipsize="end"
+                                        tools:text="18-05-2019"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_height="wrap_content">
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12sp"
+                                        android:textStyle="bold"
+                                        android:ellipsize="end"
+                                        android:text="Vote :\u0020"/>
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:id="@+id/tvVote"
+                                        android:textSize="12sp"
+                                        android:ellipsize="end"
+                                        tools:text="4.7"/>
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:ellipsize="end"
+                                android:text="Overview :\u0020"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tvOverview"
+                                android:textSize="12sp"
+                                tools:text="@tools:sample/lorem/random"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginLeft="12dp"
+                        android:textStyle="bold"
+                        android:text="Trailers"/>
+
+                <ViewAnimator
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            android:orientation="horizontal"/>
+
+                </ViewAnimator>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </ViewAnimator>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

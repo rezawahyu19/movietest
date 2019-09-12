@@ -1,0 +1,118 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+final buildDate = new Date().format("yyyyMMddHHmm")
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.android.moviestest"
+        minSdkVersion 21
+        targetSdkVersion 29
+        multiDexEnabled true
+        versionCode buildDate.toBigInteger()
+        versionName buildDate
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+    applicationVariants.all {
+        variant -> variant.outputs.all {
+            output -> outputFileName = "MovieTest_${variant.name}_${variant.versionName}.apk"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "androidx.test:runner:1.2.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+
+    // AndroidX
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.annotation:annotation:$appcompat_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    // Multidex
+    implementation "com.android.support:multidex:$appcompat_version"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlincoroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlincoroutine_version"
+
+    //KOIN
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-core-ext:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    // Optional : Kotlin extension (https://d.android.com/kotlin/ktx)
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // Google
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // Debugging dependencies
+    implementation "com.readystatesoftware.chuck:library:$chuck_version"
+
+    implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
+    // For Kotlin use navigation-fragment-ktx
+    implementation "android.arch.navigation:navigation-ui:$navigation_version"
+
+    // Fresco
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    // Gander
+    debugImplementation "com.ashokvarma.android:gander-persistence:$gander_version"
+    releaseImplementation "com.ashokvarma.android:gander-no-op:$gander_version"
+
+    // JWT
+    implementation "io.jsonwebtoken:jjwt:$jjwt_version"
+
+    // Hawk Shared Pref
+    implementation "com.orhanobut:hawk:$hawk_version"
+
+    // ExpandableLayout
+    implementation "net.cachapa.expandablelayout:expandablelayout:$expandablelayout_version"
+
+    // Dexter Permission
+    implementation "com.karumi:dexter:$dexter_version"
+
+    // EasyImage Picker
+    implementation "com.github.jkwiecien:EasyImage:$easyimage_version"
+
+    // Image Compressor
+    implementation "id.zelory:compressor:$zalorycompressor_version"
+
+    // Joda time
+    implementation "joda-time:joda-time:$jodatime_version"
+}
